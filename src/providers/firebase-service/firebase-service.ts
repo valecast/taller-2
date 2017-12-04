@@ -57,7 +57,7 @@ export class FirebaseService {
       });
     });
   }
-
+//
   removeList(id) {
     this.afd.list('/shoppingLists/').remove(id);
   }

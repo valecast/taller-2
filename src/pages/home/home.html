@@ -1,0 +1,199 @@
+<ion-header>
+  <ion-navbar color="home-navbar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>
+      <img src="assets/imgs/simplEstat.png" height="46px" style="display:inline-block;" width="auto"/>
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="creditos()">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+
+        <ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-fab top right>
+                <button ion-fab mini color="home-naranjo" (click)="bernoulli()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+              </ion-fab>
+            </ion-col>
+          </ion-row>
+          <img src="assets/imgs/bernoulli.jpg">
+          <ion-item-group (click)="bernoulli()">
+            <ion-item class="card-title" color="home-cardTitle">
+              <h2>Distribución de Bernoulli</h2>
+              <p text-wrap>Generalización de la distribución de Bernoulli para n evenetos dicotómicos.</p>
+            </ion-item>
+          </ion-item-group>
+        </ion-card>
+
+    </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col>
+
+        <ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-fab top right>
+                <button ion-fab mini color="home-naranjo" (click)="binomial()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+              </ion-fab>
+            </ion-col>
+          </ion-row>
+          <img src="assets/imgs/binomial.png">
+          <ion-item-group (click)="binomial()">
+            <ion-item class="card-title" color="home-cardTitle">
+              <h2>Distribución Binomial</h2>
+              <p text-wrap>Modelo de probabilidad para una variable discreta de característica dicotómica.</p>
+            </ion-item>
+          </ion-item-group>
+        </ion-card>
+
+      </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col>
+
+        <ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-fab top right>
+                <button ion-fab mini color="home-naranjo" (click)="poisson()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+              </ion-fab>
+            </ion-col>
+          </ion-row>
+          <img src="assets/imgs/poisson.png">
+          <ion-item-group (click)="poisson()">
+            <ion-item class="card-title" color="home-cardTitle">
+              <h2>Distribución Poisson</h2>
+              <p text-wrap>Se suele utilizar cuando el nº de repeticiones "n" es discreta y muy grande.</p>
+            </ion-item>
+          </ion-item-group>
+        </ion-card>
+
+      </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col>
+
+        <ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-fab top right>
+                <button ion-fab mini color="home-naranjo" (click)="hipergeometrica()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+              </ion-fab>
+            </ion-col>
+          </ion-row>
+          <img src="assets/imgs/hipergeometrica.png">
+          <ion-item-group (click)="hipergeometrica()">
+            <ion-item class="card-title" color="home-cardTitle">
+              <h2>Distribución Hipergeométrica</h2>
+              <p text-wrap>Distribución discreta utilizada en la extracción de muestras sin reemplazo.</p>
+            </ion-item>
+          </ion-item-group>
+        </ion-card>
+
+      </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col>
+
+        <ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-fab top right>
+                <button ion-fab mini color="home-naranjo" (click)="normal()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+              </ion-fab>
+            </ion-col>
+          </ion-row>
+          <img src="assets/imgs/normal.png">
+          <ion-item-group (click)="normal()">
+            <ion-item class="card-title" color="home-cardTitle">
+              <h2>Distribución Normal</h2>
+              <p text-wrap>Modelo de probabilidad bajo el cual muchos fenómenos se comportan.</p>
+            </ion-item>
+          </ion-item-group>
+        </ion-card>
+
+      </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col>
+
+        <ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-fab top right>
+                <button ion-fab mini color="home-naranjo" (click)="exponencial()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+              </ion-fab>
+            </ion-col>
+          </ion-row>
+          <img src="assets/imgs/exponencial.png">
+          <ion-item-group (click)="exponencial()">
+            <ion-item class="card-title" color="home-cardTitle">
+              <h2>Distribución Exponencial</h2>
+              <p text-wrap>Modelo de probabilidad asociado comunmente a la teoría de colas.</p>
+            </ion-item>
+          </ion-item-group>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+
+        <ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-fab top right>
+                <button ion-fab mini color="home-naranjo" (click)="chi()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+              </ion-fab>
+            </ion-col>
+          </ion-row>
+          <img src="assets/imgs/chi.png">
+          <ion-item-group (click)="chi()">
+            <ion-item class="card-title" color="home-cardTitle">
+              <h2>Distribución Chi Cuadrado</h2>
+              <p text-wrap>Modelo de probabilidad</p>
+            </ion-item>
+          </ion-item-group>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+
+        <ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-fab top right>
+                <button ion-fab mini color="home-naranjo" (click)="tstudent()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+              </ion-fab>
+            </ion-col>
+          </ion-row>
+          <img src="assets/imgs/tst.png">
+          <ion-item-group (click)="tstudent()">
+            <ion-item class="card-title" color="home-cardTitle">
+              <h2>Distribución T-Student</h2>
+              <p text-wrap>Modelo de probabilidad</p>
+            </ion-item>
+          </ion-item-group>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

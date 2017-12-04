@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar color="home-navbar">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Distr. T-Student</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-item item-divider color="home-cardTitle">
+      Definición
+    </ion-item>
+
+    <ion-card-content [MathJax]="def_text" style="text-align: justify;">
+      {{def_text}}
+    </ion-card-content>
+
+    <ion-item item-divider color="home-cardTitle">
+      Parámetros
+    </ion-item>
+      <ion-card-content [MathJax]="par_text" style="text-align: justify;"> 
+        {{par_text}}
+      </ion-card-content>
+
+  <form [formGroup]="prueba" (submit)="tCalc()" novalidate>
+
+    <ion-item item-divider color="home-cardTitle">
+        Calcular Distr. T-Student
+    </ion-item>
+    
+    <ion-item>
+      <ion-label stacked [MathJax]="text4" style="text-align: justify;">{{ text4 }}</ion-label>
+      <ion-input formControlName="bindof" [disabled]="buttonDisabled" type="number" [(ngModel)]="bindof" name="bindof"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked [MathJax]="text3" style="text-align: justify;">{{ text3 }}</ion-label>
+      <ion-input formControlName="binx" [disabled]="buttonDisabled" type="number" [(ngModel)]="binx" name="binx"></ion-input>
+    </ion-item>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button full type="submit" [disabled]="buttonDisabled" color="home-navbar">Calcular</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button full color="danger" (click)="reset()" type="reset" color="home-naranjo">Borrar</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+
+  <ion-item item-divider color="home-cardTitle" *ngIf="visible">
+    Resultados
+  </ion-item>
+  <ion-card-content *ngIf="visible" [MathJax]="res_text" style="text-align: justify;">
+    {{res_text}}
+    <p>&nbsp;</p>
+  </ion-card-content>
+
+  <p style="text-align: center; color: grey;"><small>&copy; 2017 | Universidad de Playa Ancha de Ciencias de la Educación</small></p>
+  <img src="assets/imgs/Lab[e]saM.png">
+  <br>
+  <br>
+</ion-content>

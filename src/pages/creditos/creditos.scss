@@ -1,0 +1,19 @@
+page-creditos {
+        .content{
+            background-color: #E1F5FE;
+        }
+        ion-card{
+            ion-item.card-title{
+                h2{
+                    color: white;
+                    font-weight: bold;
+                }
+                p{
+                    font-weight: lighter;
+                    text-align: justify;
+                    text-justify: inter-word;
+                }
+            }
+        }
+    }
+

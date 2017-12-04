@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar color="home-navbar">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>
+      <img src="assets/imgs/simplEstat.png" height="46px" style="display:inline-block;" width="auto"/>
+    </ion-title>
+
+
+    <ion-buttons end>
+      <button ion-button (click)="creditos()">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+    <h1>Autenticarse</h1>
+
+    <ion-item padding>
+      <ion-label floating>Email</ion-label>
+      <ion-input formControlName="email" type="email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
+    </ion-item>
+
+    <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty" no-lines><p>Email no válido.</p></ion-item>
+
+    <ion-item padding >
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input formControlName="password" type="password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
+    </ion-item>
+
+    <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty" no-lines><p>Minimo 6 carácteres.</p></ion-item>
+
+    <button ion-button block type="submit" color="home-cardTitle" [disabled]="!loginForm.valid">Entrar</button>
+  </form>
+
+  <button ion-button block clear color="home-cardTitle" (click)="goToSignup()">Crear una nueva cuenta</button>
+  <button ion-button block clear color="home-cardTitle" (click)="resetPassword()">Restablecer Contraseña</button>
+</ion-content>

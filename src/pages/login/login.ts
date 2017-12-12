@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, Loading, LoadingController, NavController, AlertController } from 'ionic-angular';
+import { IonicPage, Loading, LoadingController, NavController, MenuController, AlertController } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { FirebaseService } from '../../providers/firebase-service/firebase-service';
 import { HomePage } from '../home/home';
@@ -16,6 +16,7 @@ export class LoginPage {
 
   constructor(
     public navCtrl: NavController,
+    public menuCtrl: MenuController,
     public firebaseService: FirebaseService,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
@@ -26,8 +27,19 @@ export class LoginPage {
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
     });
 
+    this.disableAuthenticatedMenu();
+
   }
 
+  disableAuthenticatedMenu(){
+    this.menuCtrl.enable(false, 'authenticated');
+    this.menuCtrl.enable(true, 'unauthenticated');
+  }
+
+  enableAuthenticatedMenu() {
+    this.menuCtrl.enable(true, 'authenticated');
+    this.menuCtrl.enable(false, 'unauthenticated');
+  }
 
   loginUser(): void {
     if (this.loginForm.valid) {
@@ -36,24 +48,27 @@ export class LoginPage {
 
       this.firebaseService.loginUser(this.loginForm.value.email, this.loginForm.value.password)
       .then(authData => {
-          this.loading.dismiss().then(() => {
-            this.navCtrl.setRoot(HomePage);
-          });
-        }, error => {
-          this.loading.dismiss().then(() => {
+        this.loading.dismiss().then(() => {
+          this.enableAuthenticatedMenu();
+          this.navCtrl.setRoot(HomePage);
+
+        });
+      }, error => {
+        this.loading.dismiss().then(() => {
+            //$rootScope.logueado = false;
             let alert = this.alertCtrl.create({
               title: 'Error',
               message: error.message,
               buttons: [
-                {
-                  text: "Ok",
-                  role: 'cancel'
-                }
+              {
+                text: "Ok",
+                role: 'cancel'
+              }
               ]
             });
             alert.present();
           });
-        });
+      });
     }
   }
 
@@ -66,27 +81,27 @@ export class LoginPage {
       title: 'Restablecer Contraseña',
       message: 'Ingrese su email',
       inputs: [
-        {
-          name: 'email',
-          placeholder: 'Mi Email'
-        },
+      {
+        name: 'email',
+        placeholder: 'Mi Email'
+      },
       ],
       buttons: [
-        {
-          text: 'Cancelar',
-        },
-        {
-          text: 'Restablecer',
-          handler: data => {
-            this.firebaseService.resetPassword(data.email).then(data => {
-              console.log('reset: ', data);
-              this.showBasicAlert('Success', 'Check your email for further instructions.');
-            })
-              .catch(err => {
-                this.showBasicAlert('Error', err.message);
-              })
-          }
+      {
+        text: 'Cancelar',
+      },
+      {
+        text: 'Restablecer',
+        handler: data => {
+          this.firebaseService.resetPassword(data.email).then(data => {
+            console.log('reset: ', data);
+            this.showBasicAlert('Success', 'Check your email for further instructions.');
+          })
+          .catch(err => {
+            this.showBasicAlert('Error', err.message);
+          })
         }
+      }
       ]
     });
     prompt.present();

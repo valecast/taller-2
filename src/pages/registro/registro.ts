@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, Loading, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, MenuController, Loading, LoadingController, AlertController } from 'ionic-angular';
 import { FirebaseService } from '../../providers/firebase-service/firebase-service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -14,8 +14,12 @@ export class RegistroPage {
   public signupForm: FormGroup;
   loading: Loading;
 
-  constructor(public navCtrl: NavController, public firebaseService: FirebaseService,
-    public formBuilder: FormBuilder, public loadingCtrl: LoadingController,
+  constructor(
+    public navCtrl: NavController,
+    public menuCtrl: MenuController,
+    public firebaseService: FirebaseService,
+    public formBuilder: FormBuilder, 
+    public loadingCtrl: LoadingController,
     public alertCtrl: AlertController) {
 
     this.signupForm = formBuilder.group({
@@ -24,6 +28,18 @@ export class RegistroPage {
       name: ['', Validators.compose([Validators.minLength(3), Validators.required])],
       apellido: ['', Validators.compose([Validators.minLength(3), Validators.required])],
     });
+
+    this.disableAuthenticatedMenu();
+  }
+
+  disableAuthenticatedMenu(){
+    this.menuCtrl.enable(false, 'authenticated');
+    this.menuCtrl.enable(true, 'unauthenticated');
+  }
+
+  enableAuthenticatedMenu() {
+    this.menuCtrl.enable(true, 'authenticated');
+    this.menuCtrl.enable(false, 'unauthenticated');
   }
 
   signupUser() {
@@ -32,25 +48,26 @@ export class RegistroPage {
       this.loading.present();
 
       this.firebaseService.signUp(this.signupForm.value.email, this.signupForm.value.password, this.signupForm.value.name, this.signupForm.value.apellido)
-        .then(() => {
-          this.loading.dismiss().then(() => {
-            this.navCtrl.setRoot('LoginPage');
-          });
-        }, (error) => {
-          this.loading.dismiss().then(() => {
-            let alert = this.alertCtrl.create({
-              title: 'Error',
-              message: error.message,
-              buttons: [
-                {
-                  text: "Ok",
-                  role: 'cancel'
-                }
-              ]
-            });
-            alert.present();
-          });
+      .then(() => {
+        this.loading.dismiss().then(() => {
+          this.enableAuthenticatedMenu();
+          this.navCtrl.setRoot('LoginPage');
         });
+      }, (error) => {
+        this.loading.dismiss().then(() => {
+          let alert = this.alertCtrl.create({
+            title: 'Error',
+            message: error.message,
+            buttons: [
+            {
+              text: "Ok",
+              role: 'cancel'
+            }
+            ]
+          });
+          alert.present();
+        });
+      });
     }
   }
   creditos(){

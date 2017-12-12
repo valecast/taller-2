@@ -1,35 +1,40 @@
-<ion-menu [content]="content">
-        <ion-header>
-          <ion-toolbar color="home-naranjo">
-            <ion-title>Menu</ion-title>
-          </ion-toolbar>
-        </ion-header>
-      
-        <ion-content>
-          <ion-list>
-            <button menuClose ion-item *ngFor="let p of pagesInicio" (click)="openPage(p)" color="home-gris">
-              {{p.title}}
-            </button>
-            <ion-item-divider ion-item color="home-navbar" no-lines>
-              Distr. Discretas
-            </ion-item-divider>
-            <button menuClose ion-item *ngFor="let p of pagesDiscretas" (click)="openPage(p)" color="home-gris">
-              {{p.title}}
-            </button>
-            <ion-item-divider ion-item color="home-navbar" no-lines>
-              Distr. Continuas
-            </ion-item-divider>
-            <button menuClose ion-item *ngFor="let p of pagesContinuas" (click)="openPage(p)" color="home-gris">
-              {{p.title}}
-            </button>
-          </ion-list>
-          
-          <p style="text-align: center; color: grey;"><small>Desarrollado por el Departamento de Matemática y Estadística</small></p>
-          <img src="assets/imgs/Lab[e]saM.png">
-          <p style="text-align: center; color: grey;"><small>&copy; 2017 | Universidad de Playa Ancha de Ciencias de la Educación</small></p>
-        </ion-content>
-      
-      </ion-menu>
-      
-      <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-      <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<!--Menu principal. Este menu se muestra cuando el usuario ya se a identificado-->
+<ion-menu id="authenticated" side="left" [content]="content">
+  <ion-header>
+    <ion-toolbar color="home-naranjo">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pagesInicio" (click)="openPage(p)" color="home-gris">
+        {{p.title}}
+      </button>
+      <ion-item-divider ion-item color="home-navbar" no-lines>
+        Distr. Discretas
+      </ion-item-divider>
+      <button menuClose ion-item *ngFor="let p of pagesDiscretas" (click)="openPage(p)" color="home-gris">
+        {{p.title}}
+      </button>
+      <ion-item-divider ion-item color="home-navbar" no-lines>
+        Distr. Continuas
+      </ion-item-divider>
+      <button menuClose ion-item *ngFor="let p of pagesContinuas" (click)="openPage(p)" color="home-gris">
+        {{p.title}}
+      </button>
+    </ion-list>
+
+    <p style="text-align: center; color: grey;"><small>Desarrollado por el Departamento de Matemática y Estadística</small></p>
+    <img src="assets/imgs/Lab[e]saM.png">
+    <p style="text-align: center; color: grey;"><small>&copy; 2017 | Universidad de Playa Ancha de Ciencias de la Educación</small></p>
+  </ion-content>
+</ion-menu>
+
+<!--Menu temporal. Este menu se muestra cuando el usuario aun no se a identificado-->
+<ion-menu id="unauthenticated" side="left" [content]="content">
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

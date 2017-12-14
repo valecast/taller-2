@@ -44,17 +44,35 @@
       </ion-grid>
     </form>
 
-    <ion-item item-divider color="home-navbar" *ngIf="visible" >
+    <ion-item item-divider color="home-navbar" *ngIf="visible">
       Resultados
     </ion-item>
     <ion-card-content *ngIf="visible" [MathJax]="res_text" style="text-align: justify;">
       {{res_text}}
       <p>&nbsp;</p>
     </ion-card-content>
-    <ion-card-content *ngIf="visible" style="text-align:center" >
+    <ion-item item-divider color="home-navbar">
+      Video
+    </ion-item>
+    <ion-card-content>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/WBSOTPM4BeY" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
     </ion-card-content>
-
+    <ion-item item-divider color="home-navbar"> 
+      Grafico
+    </ion-item>
+    <ion-card-content>
+      <ion-content padding>
+        <canvas baseChart width="300" height="400"
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors"
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)"></canvas>
+      </ion-content>
+    </ion-card-content>
     <p style="text-align: center; color: grey;"><small>&copy; 2017 | Universidad de Playa Ancha de Ciencias de la Educación</small></p>
     <img src="assets/imgs/Lab[e]saM.png">
     <br>
